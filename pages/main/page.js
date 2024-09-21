@@ -25,6 +25,7 @@ export function onload() {
         stores.servers.find(a => a._id == stores.currentServer).categories.forEach(category => {
             let elem = document.createElement('details');
             elem.classList.add("category");
+            elem.setAttribute("open", "true")
             elem.innerHTML = `<summary>${category.title}</summary>`
             category.channels.forEach(channelID => {
                 const channel = stores.channels.find(a => a._id == channelID);
