@@ -55,8 +55,24 @@ export function onload() {
             let elem = document.createElement('div');
             elem.classList.add("message");
             let user = msgs.users.find(a => a._id == msg.author);
-            elem.innerText = (user.display_name ?? user.username) + ": " + msg.content
+            let member = msgs.members.find(a => a._id.user == msg.author);
+            elem.innerText = (member?.nickname ?? user.display_name ?? user.username) + ": " + msg?.content
             msgArea.appendChild(elem)
         });
+
+        document.getElementById("send").onclick = function (event) { // using on(event) = ... instead of addEventListener("(event)", ...) because i cant be bothered to clear the event on channel change lol
+            let msg = document.getElementById("messageInput").value;
+            let response = fetchJSON(`https://api.revolt.chat/channels/${stores.currentChannel}/messages`, {
+                method: "post",
+                headers: {
+                    "content-type": "application/json",
+                    "x-session-token": stores.token
+                },
+                body: JSON.stringify({
+                    content: msg
+                })
+            });
+            document.getElementById("messageInput").value = ""
+        }
     }))
 }

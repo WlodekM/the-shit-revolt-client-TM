@@ -26,6 +26,17 @@ export function onload() {
                     stores.set("servers", data.servers)
                     stores.set("channels", data.channels)
                     break;
+
+                case "Message":
+                    if(data.channel != stores.currentChannel) break;
+
+                    let msgArea = document.getElementById("messages");
+                    let elem = document.createElement('div');
+
+                    elem.classList.add("message");
+                    elem.innerText = (data.member?.nickname ?? data.user.display_name ?? data.user.username) + ": " + data.content
+                    msgArea.appendChild(elem)
+                    break;
             
                 default:
                     break;

@@ -4,26 +4,18 @@ body {
     margin: 0;
 }
 
-.server img {
-	width: 100%;
-}
-
 .main {
 	display: flex;
 	width: 100%;
 	max-height: 100vh;
+	min-height: 100vh;
 	height: 100%;
 }
 
-.server {
-	max-width: 5em;
-    cursor: pointer;
-}
-
 .servers {
-	overflow: auto;
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 }
 
 .serverView {
@@ -51,4 +43,24 @@ body {
 
 .messageInput.disabled {
     display: none;
+}
+
+.server {
+	width: 45px;
+    word-break: break-all;
+    word-wrap: break-word;
+	height: 45px;
+	object-fit: cover;
+	padding: 0;
+}
+
+.server img {
+	width: 100%;
+	height: 100%;
+}
+
+.sidebar {
+	height: 100%;
+	/* padding: 0.3rem; */
+	overflow-y: auto;
 }
